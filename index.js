@@ -1,13 +1,7 @@
-const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(express.static('.'));
-
-app.get('/search', async (req, res) => {
+module.exports = async (req, res) => {
   const searchQuery = req.query.q;
 
   try {
@@ -68,8 +62,4 @@ app.get('/search', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Gagal mendapatkan data" });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+};
